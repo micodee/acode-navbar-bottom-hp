@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style type="text/css" media="all">
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+:root {
+  --clr: #20415c;
+}
+body {
+  text-align: center;
+}
+.bg {
+  background: var(--clr);
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navigation {
+  position: fixed;
+  bottom: 3%;
+}
+.menu_toogle {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  background: #ff4886;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transform: translateY(-30px);
+  transition: 0.5s;
+  transition-delay: 1.2s;
+}
+.menu_toogle.active {
+  border: 5px solid var(--clr);
+  transition-delay: 0s;
+}
+.menu_toogle::before {
+  content: "+";
+  position: absolute;
+  font-size: 3rem;
+  font-weight: 200;
+  color: #fff;
+  transition: 1s;
+}
+.menu_toogle.active:before {
+  transform: rotate(225deg);
+}
+.menu {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 70px;
+  transform: translateY(-30px);
+  transition: transform 0.5s, width 0.5s, height 0.5s;
+  transition-delay: 1s, 0.5s, 0.5s;
+}
+
+.menu_toogle i {
+  position: absolute;
+  inset: 0;
+}
+.menu_toogle i::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  top: 22.4px;
+  left: -23px;
+  border-top-right-radius: 20px;
+  box-shadow: 3px -7px var(--clr);
+  opacity: 0;
+  transition: .5s;
+  transition-delay: 1s;
+}
+.menu_toogle i::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  top: 22.4px;
+  right: -23px;
+  border-top-left-radius: 20px;
+  box-shadow: -3px -7px var(--clr);
+  opacity: 0;
+  transition: .5s;
+  transition-delay: 1s;
+}
+
+.menu ul {
+  position: relative;
+  gap: 35px;
+  line-height: 80px;
+}
+.menu ul li {
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s;
+  transition-delay: calc(0s + var(--i));
+}
+.menu ul li:nth-child(3) {
+  width: 30px;
+}
+.menu ul li a {
+  font-size: 2rem;
+  color: #555;
+}
+.menu ul li:hover a {
+  color: #ff4886;
+}
+
+.menu_toogle.active ~ .menu {
+  width: 360px;
+  height: 70px;
+  transform: translateY(0);
+  transition-delay: 0s, 0.5s, 0.5s;
+}
+.menu_toogle.active ~ .menu ul li {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: calc(0.75s + var(--i));
+}
+.menu_toogle.active i::before,
+.menu_toogle.active i::after {
+  opacity: 1;
+  transition-delay: .3s;
+}
+
+
+
+.home, .about, .like, .notif {
+  height: 100vh;
+  background: var(--clr);
+}
+.home {
+  background: var(--clr);
+  transition: 3s;
+}
+main {
+  overflow: hidden;
+  transition: 3s;
+}
+section {
+  transition: 3s;
+}
+    </style>
+    <title>Navbar</title>
+  </head>
+  <body>
+    <div class="bg flex-center">
+      <nav class="navigation flex-center">
+        <div class="menu_toogle flex-center"><i></i></div>
+        <div class="menu">
+          <ul class="flex-center">
+            <li style="--i: 0.1s">
+              <a href="#home">
+                <ion-icon name="home-outline"></ion-icon>
+              </a>
+            </li>
+            <li style="--i: 0.2s">
+              <a href="#about">
+                <ion-icon name="person-outline"></ion-icon>
+              </a>
+            </li>
+            <li></li>
+            <li style="--i: 0.2s">
+              <a href="#like">
+                <ion-icon name="heart-outline"></ion-icon>
+              </a>
+            </li>
+            <li style="--i: 0.1s">
+              <a href="#notif">
+                <ion-icon name="notifications-outline"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <main>
+      <section class="home" id="home">home</section>
+      <section class="about" id="about">about</section>
+      <section class="like" id="like">like</section>
+      <section class="notif" id="notif">notifikasi</section>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script type="text/javascript" charset="utf-8">
+      let menu_toogle = document.querySelector(".menu_toogle");
+      menu_toogle.onclick = function () {
+        menu_toogle.classList.toggle("active");
+      };
+    </script>
+  </body>
+</html>
